@@ -4,6 +4,7 @@
   "description": "Backend for CRM life",
   "main": "app.ts",
   "scripts": {
+    "server": "nodemon app.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,6 +18,7 @@
   },
   "homepage": "https://github.com/valentraverso/backend-life.valentinotraverso#readme",
   "devDependencies": {
+    "@types/express": "^4.17.17",
     "@types/mongoose": "^5.11.97",
     "nodemon": "^2.0.22",
     "ts-node": "^10.9.1"
