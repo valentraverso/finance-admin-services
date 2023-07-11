@@ -1,3 +1,3 @@
-import startServer from "./shared/server";
+import startServer from "./src/shared/server";
 
 startServer();
