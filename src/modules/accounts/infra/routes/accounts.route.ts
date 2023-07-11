@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { accountsUseCase } from "../../app/usecases/accounts.usecase";
-import accountsRepository from "../../domain/repositories/accounts.repository";
 import { accountsController } from "../controllers/accounts.controller";
+import accountsRepository from "../repositories/accounts.repository";
 
 const accountRouter = Router();
 

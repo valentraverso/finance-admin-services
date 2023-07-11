@@ -1,4 +1,4 @@
-import { Schema, Types } from "mongoose";
+import { Schema, Types, model } from "mongoose";
 
 const accountSchema = new Schema({
     accountNickname: {
@@ -10,7 +10,7 @@ const accountSchema = new Schema({
         required: true
     },
     accountType: {
-        type: "bank" || "cash",
+        type: String,
         required: true
     },
     providerName: {
@@ -31,3 +31,6 @@ const accountSchema = new Schema({
         required: true
     }
 });
+
+const accountModel = model("accounts", accountSchema);
+export default accountModel;

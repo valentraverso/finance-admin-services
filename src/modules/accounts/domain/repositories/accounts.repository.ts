@@ -1,7 +1,5 @@
 import { accountEntity } from "../entities/accounts.entity";
 
-export class accountsRepository {
+export interface accountsRepository {
     post: (account: Omit<accountEntity, "id">) => Promise<any>;
 }
-
-export default new accountsRepository();
