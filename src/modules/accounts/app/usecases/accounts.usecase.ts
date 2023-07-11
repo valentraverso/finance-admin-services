@@ -10,5 +10,6 @@ export class accountsUseCase {
     */
     async post(account: createAccountDTO) {
 
+        return await this.repository.post(account);
     }
 }
