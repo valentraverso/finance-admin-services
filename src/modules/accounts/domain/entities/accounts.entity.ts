@@ -8,3 +8,5 @@ export interface accountEntity {
     location: String,
     status: Number
 }
+
+export type createAccountDTO = Omit<accountEntity, "id">;

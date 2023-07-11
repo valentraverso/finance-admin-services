@@ -1,7 +1,14 @@
+import { createAccountDTO } from "../../domain/entities/accounts.entity";
 import { accountsRepository } from "../../domain/repositories/accounts.repository";
 
 export class accountsUseCase {
     constructor(private repository: accountsRepository) { }
 
-    async post() { }
+    /*
+    * Post account
+    * 
+    */
+    async post(account: createAccountDTO) {
+
+    }
 }
