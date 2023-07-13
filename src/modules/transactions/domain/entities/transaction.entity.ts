@@ -5,3 +5,5 @@ export interface transactionEntity {
     type: String;
     accountId: String;
 }
+
+export type createTransactionDTO = Omit<transactionEntity, "id">;

@@ -1,5 +1,5 @@
-import { accountEntity } from "../entities/accounts.entity";
+import { createAccountDTO } from "../entities/accounts.entity";
 
 export interface accountsRepository {
-    post: (account: Omit<accountEntity, "id">) => Promise<any>;
+    post: (account: createAccountDTO) => Promise<any>;
 }
