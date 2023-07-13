@@ -18,7 +18,7 @@ const accountSchema = new Schema({
         required: false
     },
     accountOwner: {
-        type: Types.ObjectId,
+        type: String,
         required: false
     },
     location: {

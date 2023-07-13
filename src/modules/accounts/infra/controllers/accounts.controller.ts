@@ -7,6 +7,7 @@ export class accountsController {
 
     async post(req: Request, res: Response, next: NextFunction) {
         const account = req.body as createAccountDTO;
+        console.log('Body Requested', account)
 
         try {
             const call = this.useCase.post(account);
@@ -17,6 +18,10 @@ export class accountsController {
         }
 
         next();
+    }
+
+    async getById(req: Request, res: Response, next: NextFunction) {
+        console.log(req.params.id);
     }
 
 }

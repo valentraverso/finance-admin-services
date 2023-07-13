@@ -9,5 +9,6 @@ const instanceUseCase: accountsUseCase = new accountsUseCase(accountsRepository)
 const instanceController = new accountsController(instanceUseCase);
 
 accountRouter.post("/post", instanceController.post.bind(instanceController));
+accountRouter.get("/find/id/:id", instanceController.getById.bind(instanceController));
 
 export default accountRouter;

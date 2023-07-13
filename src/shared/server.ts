@@ -5,6 +5,8 @@ import connectMongo from "./repositories/mongo/init.repository";
 
 const app = express();
 
+app.use(express.json());
+
 app.use('/api/v1', ROUTER);
 
 export default function startServer() {
