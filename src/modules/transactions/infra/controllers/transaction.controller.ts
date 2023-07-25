@@ -9,6 +9,7 @@ export class transactionController {
         const transaction = req.body as createTransactionDTO;
 
         try {
+            console.log('controlador')
             const call = this.useCase.post(transaction);
 
             res.status(200).send({
