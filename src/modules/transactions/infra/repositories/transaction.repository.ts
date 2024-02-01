@@ -1,10 +1,10 @@
 import { createTransactionDTO } from "../../domain/entities/transaction.entity";
 import { transactionRepository as transactionRepositoryDomain } from "../../domain/repository/transaction.repository";
-import accountsRepo from "./mongo/transaction.repository";
+import TransactiRepository from "./mongo/transaction.repository";
 
 export class transactionRepository implements transactionRepositoryDomain {
-    async post(transaction: createTransactionDTO) {
-        return await accountsRepo.post(transaction);
+    async post(transaction: createTransactionDTO) {        
+        return await TransactiRepository.post(transaction);
     }
 
 }

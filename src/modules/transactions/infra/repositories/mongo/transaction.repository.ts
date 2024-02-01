@@ -4,7 +4,9 @@ import transactionModel from "./transaction.schema";
 export class transactionMongoRepository {
     async post(transaction: createTransactionDTO) {
         const call = await transactionModel
-            .create({ transaction })
+            .create(transaction);
+
+            console.log(call)
 
         return call;
     }
