@@ -1,28 +1,20 @@
 import { Schema, Types, model } from "mongoose";
 
 const accountSchema = new Schema({
-    accountNickname: {
+    name: {
         type: String,
-        required: false
+        required: true
     },
     currency: {
         type: String,
         required: true
     },
-    accountType: {
-        type: String,
-        required: true
-    },
-    providerName: {
+    entity: {
         type: String,
         required: false
     },
-    accountOwner: {
-        type: String,
-        required: false
-    },
-    location: {
-        type: String,
+    balance: {
+        type: Number,
         required: true
     },
     status: {

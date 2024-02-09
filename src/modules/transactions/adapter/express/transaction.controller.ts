@@ -1,12 +1,12 @@
 import { NextFunction, Request, Response } from "express";
-import { transactionUseCase } from "../../application/transaction.usecase";
-import { createTransactionDTO } from "../../domain/entities/transaction.entity";
+import { transactionUseCase } from "../../application/usecases/transaction.usecase";
+import { ITransactionEntity } from "../../domain/entities/transaction.entity";
 
 export class transactionController {
     constructor(private useCase: transactionUseCase) { }
 
     async create(req: Request, res: Response, next: NextFunction) {
-        const transaction = req.body as createTransactionDTO;
+        const transaction = req.body as ITransactionEntity;
 
         try {
             const create = this.useCase.create(transaction);
