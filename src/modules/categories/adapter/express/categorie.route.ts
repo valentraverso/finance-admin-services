@@ -5,6 +5,6 @@ const categorieRouter = Router();
 
 const categorieController = new CategorieController();
 
-categorieRouter.get("/all", categorieController.getAll);
+categorieRouter.get("/find/all", categorieController.getAll);
 
 export default categorieRouter;
