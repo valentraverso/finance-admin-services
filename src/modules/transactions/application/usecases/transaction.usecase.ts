@@ -27,20 +27,20 @@ export class transactionUseCase {
             // Find last transaction with idAccount
             const findLastTransaction = await transactionMaker.getLastTransaction({ idAccount: data.idAccount });
 
-            if (!findLastTransaction.hasOwnProperty("balance") || !findLastTransaction || findLastTransaction == undefined) {
+            if (!findLastTransaction || !findLastTransaction?.hasOwnProperty("balance") || findLastTransaction == undefined) {
                 // Change data balance to 0
                 data.balance = 0;
+            } else {
+                // Change data adding balance
+                data.balance = findLastTransaction.balance;
             }
-
-            // Change data adding balance
-            data.balance = findLastTransaction.balance;
         }
 
         // Add balance to data to upload
-        dataToUpload.balance = data.balance + (amountWithSignum);
+        dataToUpload.balance = Math.floor((data.balance + (amountWithSignum)) * 100) / 100;
 
         // Update balance in account
-        await accountsMaker.updateOne({ filters: { idAccount: data.idAccount }, data: { balance: dataToUpload.balance } });
+        await accountsMaker.updateOne({ filters: { _id: data.idAccount }, data: { balance: dataToUpload.balance } });
 
         const postTransaction = await transactionMaker.post(dataToUpload);
 

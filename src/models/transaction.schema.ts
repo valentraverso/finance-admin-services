@@ -6,7 +6,7 @@ interface ITransaction {
     amount: Float32Array;
     balance: Float32Array;
     type: Number;
-    categorie: Number;
+    categorie: string;
     description: String;
     date: Date;
 }
@@ -29,7 +29,7 @@ const transactionSchema = new Schema<ITransaction>({
         required: true
     },
     categorie: {
-        type: Number,
+        type: String,
         required: true
     },
     idAccount: {

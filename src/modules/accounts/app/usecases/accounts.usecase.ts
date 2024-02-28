@@ -16,7 +16,7 @@ export class accountsUseCase {
      */
 
     async getAll() {
-        const getAll = await this.repository.getAll({ projection: { entity: 1, IBAN: 1, name: 1, currency: 1 } });
+        const getAll = await this.repository.getAll({ projection: { entity: 1, IBAN: 1, name: 1, currency: 1, balance: 1 } });
 
         return getAll;
     }
