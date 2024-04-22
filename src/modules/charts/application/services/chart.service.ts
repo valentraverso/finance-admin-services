@@ -1,22 +1,24 @@
-import chartModel from "../../../../models/chart.schema";
 import { IChart } from "../../domain/entities/chart.entity";
 import { IChartRepository } from "../../domain/repository/chart.repository";
+import IChartService from "../../domain/service/chart.service";
 
-export default class ChartMongoDB implements IChartRepository{
+export default class ChartService implements IChartService{
+    constructor(private chartRepository: IChartRepository){}
+
     async create({ data }: { data: IChart; }): Promise<IChart> {
-        const createRecord = await chartModel.create(data);
+        const createRecord = await this.chartRepository.create({data});
 
         return createRecord;
     }
 
     async getById({ id }: { id: string; }): Promise<IChart | null> {
-        const getRecordById = await chartModel.findById(id);
+        const getRecordById = await this.chartRepository.getById({id: id});
 
         return getRecordById;
     }
 
     async getAll(): Promise<IChart[]> {
-        const getAll = await chartModel.find({});
+        const getAll = await this.chartRepository.getAll();
 
         return getAll;
     }
