@@ -45,7 +45,7 @@ export class transactionController {
 
 
 
-            const getSpends = await this.useCase.getSpendsByMonth({ ...query && { idChart: data!.idChart } });
+            const getSpends = await this.useCase.getSpendsByMonth({ ...data && { idChart: data!.idChart } });
 
             res.status(200).send({
                 status: true,

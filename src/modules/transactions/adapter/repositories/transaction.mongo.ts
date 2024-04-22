@@ -65,7 +65,7 @@ export class TransactionMongoRepository implements ITransactionRepository {
                 { case: { $eq: ["$_id.month", 11] }, then: "November" },
                 { case: { $eq: ["$_id.month", 12] }, then: "December" }
               ],
-              default: "Desconocido"
+              default: "Unknown"
             }
           },
           amount: 1
@@ -75,8 +75,6 @@ export class TransactionMongoRepository implements ITransactionRepository {
         $sort: { year: 1, month: 1 }
       }
     ]);
-
-    console.log(response)
 
     return response;
   }
