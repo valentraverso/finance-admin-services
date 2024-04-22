@@ -3,5 +3,5 @@ export interface IChart{
     label: string,
     description: string,
     type: number,
-    target: Array<number>
+    target: Array<string>
 }

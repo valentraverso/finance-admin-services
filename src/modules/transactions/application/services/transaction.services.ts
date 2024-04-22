@@ -27,8 +27,8 @@ export default class TransactionService implements ITransactionService{
         return getAllTransactions;
     }
 
-    async getSpendsByMonth(): Promise<ITransactionEntity | ITransactionEntity[] | null> {
-        const getSpends = await this.repository.getSpendsByMonth();
+    async getSpendsByMonth({ target }: { target?: string[] }): Promise<ITransactionEntity | ITransactionEntity[] | null> {
+        const getSpends = await this.repository.getSpendsByMonth({});
 
         return getSpends;
     }

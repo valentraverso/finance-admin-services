@@ -9,8 +9,7 @@ export interface ITransactionRepository {
     /**
      * GET
      */
-    getOne({filters, projection, sort}: {filters: any, projection?: any, sort?: any}): Promise<any>;
-
-    getAll({filters, projection, sort}: {filters: any, projection?: any, sort?: any}): Promise<any>;
-    getSpendsByMonth(): Promise<ITransactionEntity[] | ITransactionEntity | null>;
+    getOne({ filters, projection, sort }: { filters: any, projection?: any, sort?: any }): Promise<any>;
+    getAll({ filters, projection, sort }: { filters: any, projection?: any, sort?: any }): Promise<any>;
+    getSpendsByMonth({ target }: { target?: string[] }): Promise<ITransactionEntity[] | ITransactionEntity | null>;
 }

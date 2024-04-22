@@ -14,6 +14,8 @@ app.use(cors({
 app.use(express.json());
 app.use(helmet());
 
+app.set('query parser', "extended");
+
 app.use('/api/v1', ROUTER);
 
 app.listen(PORT, () => {

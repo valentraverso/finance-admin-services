@@ -2,6 +2,8 @@ import { ITransactionEntity } from "../../domain/entities/transaction.entity";
 import accountsMaker from "../../../accounts/adapter/express/accounts.maker";
 import transactionMaker from "../../adapter/express/transaction.maker";
 import ITransactionUseCase from "../../domain/usecases/usecase.domain";
+import chartMaker from "../../../charts/adapter/express/chart.maker";
+import customError from "../../../../shared/services/error/customError";
 
 export class transactionUseCase implements ITransactionUseCase {
     async create(data: ITransactionEntity) {
@@ -38,8 +40,25 @@ export class transactionUseCase implements ITransactionUseCase {
         return postTransaction;
     }
 
-    async getSpendsByMonth(): Promise<ITransactionEntity[] | ITransactionEntity | null> {
-        const getSpends = await transactionMaker.getSpendsByMonth();
+    async getSpendsByMonth({idChart}: {idChart?: string}): Promise<ITransactionEntity[] | ITransactionEntity | null> {
+        // If id Chart is not null
+        if(idChart || idChart !== undefined){
+            // Find chart by id
+            const getChartById = await chartMaker.getById({id: idChart});
+
+            // If chart doesn't exist
+            if(!getChartById || getChartById == undefined){
+                customError("We couldn't find chart.", 400);
+                return null;
+            }
+
+            const getSpends = await transactionMaker.getSpendsByMonth({target: getChartById.target});
+
+            return getSpends;
+        }
+
+        // If id chart is null
+        const getSpends = await transactionMaker.getSpendsByMonth({});
 
         return getSpends;
     }

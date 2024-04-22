@@ -16,7 +16,7 @@ const chartSchema = new Schema<IChart>({
         required: [true, "Please set the type of the chart"]
     },
     target: {
-        type: [Number],
+        type: [String],
         required: [true, "Please set the target of the chart"]
     }
 })

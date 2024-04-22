@@ -11,5 +11,5 @@ export default interface ITransactionService{
      */
     getLastTransaction({idAccount}: {idAccount: string}): Promise<ITransactionEntity>;
     getAllTransactions({filters, projection, sort}: {filters: any, projection?: any, sort?: any}): Promise<ITransactionEntity[] | null>;
-    getSpendsByMonth():Promise<ITransactionEntity[] | ITransactionEntity | null>;
+    getSpendsByMonth({ target }: { target?: string[] }):Promise<ITransactionEntity[] | ITransactionEntity | null>;
 }
