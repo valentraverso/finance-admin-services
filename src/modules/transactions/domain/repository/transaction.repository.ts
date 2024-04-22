@@ -1,4 +1,4 @@
-import { createTransactionDTO, transactionEntity } from "../entities/transaction.entity";
+import { ITransactionEntity, createTransactionDTO } from "../entities/transaction.entity";
 
 export interface ITransactionRepository {
     /**
@@ -10,4 +10,7 @@ export interface ITransactionRepository {
      * GET
      */
     getOne({filters, projection, sort}: {filters: any, projection?: any, sort?: any}): Promise<any>;
+
+    getAll({filters, projection, sort}: {filters: any, projection?: any, sort?: any}): Promise<any>;
+    getSpendsByMonth(): Promise<ITransactionEntity[] | ITransactionEntity | null>;
 }

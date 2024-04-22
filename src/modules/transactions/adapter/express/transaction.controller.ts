@@ -20,4 +20,22 @@ export class transactionController {
 
         next();
     }
+    
+    async getSpends(req: Request, res: Response, next: NextFunction){
+        try{
+            const getSpends = await this.useCase.getSpendsByMonth();
+
+            res.status(200).send({
+                status: true,
+                data: getSpends
+            })
+        }catch(err: any){
+            res.status(500).send({
+                status: false,
+                message: "There was an error -> " + err.message
+            })
+        }
+
+        next();
+    }
 }

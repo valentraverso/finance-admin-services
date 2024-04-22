@@ -9,4 +9,6 @@ const instanceController = new transactionController(instanceUseCase);
 
 transactionRouter.post("/create/one", instanceController.create.bind(instanceController));
 
+transactionRouter.get("/spends/all", instanceController.getSpends.bind(instanceController));
+
 export default transactionRouter;

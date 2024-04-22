@@ -1,9 +1,9 @@
 import { ITransactionEntity } from "../../domain/entities/transaction.entity";
-import ITransaction from "../../adapter/repositories/transaction.mongo";
 import accountsMaker from "../../../accounts/adapter/express/accounts.maker";
 import transactionMaker from "../../adapter/express/transaction.maker";
+import ITransactionUseCase from "../../domain/usecases/usecase.domain";
 
-export class transactionUseCase {
+export class transactionUseCase implements ITransactionUseCase {
     async create(data: ITransactionEntity) {
         // Object with data to upload
         const dataToUpload: Partial<ITransactionEntity> = {
@@ -16,24 +16,15 @@ export class transactionUseCase {
         // Add amount to data to upload
         dataToUpload.amount = amountWithSignum;
 
-        // Find balance of account
-        const findBalance = await accountsMaker.findById({ id: data.idAccount });
+        // Find last transaction with idAccount
+        const findLastTransaction = await transactionMaker.getLastTransaction({ idAccount: data.idAccount });
 
-        // Change data adding balance
-        data.balance = findBalance.balance;
-
-        // If account doesn't have balance key
-        if (!findBalance.hasOwnProperty("balance") || findBalance?.balance == undefined || !findBalance?.balance) {
-            // Find last transaction with idAccount
-            const findLastTransaction = await transactionMaker.getLastTransaction({ idAccount: data.idAccount });
-
-            if (!findLastTransaction || !findLastTransaction?.hasOwnProperty("balance") || findLastTransaction == undefined) {
-                // Change data balance to 0
-                data.balance = 0;
-            } else {
-                // Change data adding balance
-                data.balance = findLastTransaction.balance;
-            }
+        if (!findLastTransaction.balance || !findLastTransaction ) {
+            // Change data balance to 0
+            data.balance = 0;
+        } else {
+            // Change data adding balance
+            data.balance = findLastTransaction.balance;
         }
 
         // Add balance to data to upload
@@ -46,4 +37,11 @@ export class transactionUseCase {
 
         return postTransaction;
     }
+
+    async getSpendsByMonth(): Promise<ITransactionEntity[] | ITransactionEntity | null> {
+        const getSpends = await transactionMaker.getSpendsByMonth();
+
+        return getSpends;
+    }
+
 }

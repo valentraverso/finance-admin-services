@@ -1,3 +1,5 @@
+import { ITransactionEntity } from "../entities/transaction.entity";
+
 export default interface ITransactionService{
     /**
      * POST
@@ -7,5 +9,7 @@ export default interface ITransactionService{
     /**
      * GET
      */
-    getLastTransaction({idAccount}: {idAccount: string}): Promise<any>;
+    getLastTransaction({idAccount}: {idAccount: string}): Promise<ITransactionEntity>;
+    getAllTransactions({filters, projection, sort}: {filters: any, projection?: any, sort?: any}): Promise<ITransactionEntity[] | null>;
+    getSpendsByMonth():Promise<ITransactionEntity[] | ITransactionEntity | null>;
 }
